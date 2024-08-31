@@ -99,7 +99,12 @@ function Article({ article }) {
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
+    <Link
+      className="group -m-1 p-1"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
@@ -263,27 +268,31 @@ export default async function Home() {
             Fullstack software engineer, founder, and LLM enthusiast.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hi, I&apos;m Adam, a fullstack software engineer and AI tinkerer based 
-            in Seattle. I&apos;m the co-founder and sole developer of Observe Safety, 
-            an enterprise SaaS platform designed to help general contractors 
-            efficiently track and manage safety data.
+            Hi, I&apos;m Adam, a fullstack software engineer and AI tinkerer
+            based in Seattle. I&apos;m the co-founder and sole developer of
+            Observe Safety, an enterprise SaaS platform designed to help general
+            contractors efficiently track and manage safety data.
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
             <SocialLink
-              href="#"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="#"
+              href="https://www.github.com/adamowada"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="#"
+              href="https://www.linkedin.com/in/adamowada/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
+            />
+            <SocialLink
+              href="https://www.instagram.com/adamowada/"
+              aria-label="Follow on Instagram"
+              icon={InstagramIcon}
+            />
+            <SocialLink
+              href="https://www.x.com/AdamOwada"
+              aria-label="Follow on X"
+              icon={XIcon}
             />
           </div>
         </div>
