@@ -1,0 +1,11 @@
+[main e5da7b8] removed rss feed.xml, renaming articles -
+ 12 files changed, 9 insertions(+), 84 deletions(-)
+ create mode 100644 blog
+ rename src/app/{articles => blog}/crafting-a-design-system-for-a-multiplanetary-future/page.mdx (100%)
+ rename src/app/{articles => blog}/crafting-a-design-system-for-a-multiplanetary-future/planetaria-design-system.png (100%)
+ rename src/app/{articles => blog}/introducing-animaginary/page.mdx (100%)
+ rename src/app/{articles => blog}/page.jsx (94%)
+ rename src/app/{articles => blog}/rewriting-the-cosmos-kernel-in-rust/page.mdx (100%)
+ delete mode 100644 src/app/feed.xml/route.js
+
+git add . commit -m "removed rss feed.xml, renaming articles -" on branch main was successful.

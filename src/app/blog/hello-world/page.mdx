@@ -1,0 +1,50 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Adam Owada',
+  date: '2024-08-30',
+  title: 'Hello World',
+  description: 'My first blog post. Introducing myself and a little bit of how I got into coding in the first place.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Hi and thanks for visiting my website!
+
+I'm really happy you're here. It's kinda funny; for as much as I code and as much as I enjoy reading, this is my first personal
+website and the first blog I've ever written. I don't really like writing about myself or putting myself out there. I think it
+stems from a fear that I don't have anything interesting to say or value to give. If you are like me, dear reader, then I
+encourage you to try something that scares you today, and when you come out the other side it still alive you will
+have lived that much more.
+
+### Who am I?
+
+When I taught coding classes at Code Fellows I introduced myself to each new class with, "Hi I'm Adam, and I'm a law school dropout".
+
+And yes I did drop out of law school many years ago (story for a different time). Really though it was a way to start talking about
+my own coding journey, and to contrast the psychological un-safety of my law school classes with how I wanted my class to be a safe psychological space. It's ok to be wrong, to not know, and to break code. I love that it's impossible to know everything. Error messages are interesting, and when those error messages change you're making progress.
+
+Everyone starts somewhere.
+
+### I started with BASIC
+
+Do you remember the first "Hello world" program you wrote? I do. It was on a Windows 98 machine, my uncle walked me through the setup process
+and gave me a How to Program for Complete Beginners 101 book. My first program, written in BASIC, was the quintessential "Hello world" that
+I'm pretty sure is a rite of passage for all newbie programmers. I wrote a program that drew a diagonal line. I wrote a program that made beeping noises. And like many self-taught programmers learning alone from a book, I hit a wall and gave up. 
+
+Fast forward many years later and I was looking for a career change. Law school didn't work out. I was interested in learning how to code, but I still wasn't able to teach myself. My buddy Andrew told me about a coding bootcamp named Code Fellows, and I started my first real coding class as a student in 2020. I learned web development, Python, and I never looked back. 🙂
+
+```python
+def main():
+	print("Hello world, again!")
+
+
+if __name__ == "__main__":
+	main()
+	
+```

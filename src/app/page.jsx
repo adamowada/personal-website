@@ -11,10 +11,6 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
 import logoCF from '@/images/logos/cf_logo_small.png'
 import logoTEST from '@/images/logos/test_logo_small.png'
 import logoProActive from '@/images/logos/pro_active_logo_small.png'
@@ -89,14 +85,14 @@ function ArrowDownIcon(props) {
 function Article({ article }) {
   return (
     <Card as="article">
-      <Card.Title href={`/articles/${article.slug}`}>
+      <Card.Title href={`/blog/${article.slug}`}>
         {article.title}
       </Card.Title>
       <Card.Eyebrow as="time" dateTime={article.date} decorate>
         {formatDate(article.date)}
       </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
+      <Card.Cta>Read blog</Card.Cta>
     </Card>
   )
 }
