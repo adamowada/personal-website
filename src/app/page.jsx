@@ -15,6 +15,10 @@ import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoCF from '@/images/logos/cf_logo_small.png'
+import logoTEST from '@/images/logos/test_logo_small.png'
+import logoProActive from '@/images/logos/pro_active_logo_small.png'
+import logoOS from '@/images/logos/os_logo_1.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -179,35 +183,35 @@ function Role({ role }) {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
-      start: '2019',
+      company: 'Observe Safety, LLC',
+      title: 'Fullstack Software Engineer',
+      logo: logoOS,
+      start: '2024',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
+      company: 'Code Fellows, Inc.',
+      title: 'Lead Instructor, Python',
+      logo: logoCF,
+      start: '2022',
+      end: '2024',
+    },
+    {
+      company: 'Temporary Employee Safety Training, LLC',
+      title: 'Fullstack Software Engineer',
+      logo: logoTEST,
+      start: '2021',
+      end: '2021',
+    },
+    {
+      company: 'Pro-Active Home Builders, Inc.',
+      title: 'Safety Officer',
+      logo: logoProActive,
       start: '2014',
-      end: '2019',
-    },
-    {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
-    },
-    {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      end: '2022',
     },
   ]
 
@@ -222,10 +226,6 @@ function Resume() {
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
     </div>
   )
 }
@@ -306,7 +306,6 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
             <Resume />
           </div>
         </div>
