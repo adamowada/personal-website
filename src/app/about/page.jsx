@@ -17,6 +17,8 @@ function SocialLink({ className, href, children, icon: Icon }) {
       <Link
         href={href}
         className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
@@ -39,7 +41,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    'I’m Spencer Sharp. I live in New York City, where I design the future.',
+    "I'm Adam Owada. I build tools to empower people.",
 }
 
 export default function About() {
@@ -58,59 +60,88 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I’m Spencer Sharp. I live in New York City, where I design the
-            future.
+            I&apos;m Adam Owada. I build tools to empower people.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember, and wrote
-              my first program when I was 6 years old, just two weeks after my
-              mom brought home the brand new Macintosh LC 550 that I taught
-              myself to type on.
+              I&apos;ve loved making (and breaking) things since I was a kid. It
+              started with legos, and creating my own mechs by combining
+              Bionicle lego sets together into ever more complex iterations and
+              of course having them fight each other. I took apart broken
+              electronics, played around with BASIC, and told my parents I
+              wanted to be an inventor. I liked reading about codes and ciphers,
+              and I wrote a report in high school based largely on Simon Singh&apos;s
+              "The Code Book" where I learned about the math behind public-key
+              cryptography. The idea that one-way functions operated like
+              "locks" blew my mind. 🤯
             </p>
             <p>
-              The only thing I loved more than computers as a kid was space.
-              When I was 8, I climbed the 40-foot oak tree at the back of our
-              yard while wearing my older sister’s motorcycle helmet, counted
-              down from three, and jumped — hoping the tree was tall enough that
-              with just a bit of momentum I’d be able to get to orbit.
+              I was interested in everything but lacked a clear vision. I loved
+              the intellectual challenge of the legal profession and tried law
+              school. It wasn&apos;t until IBM&apos;s Watson years later that my creative
+              mind really saw the possibility of programming and the potential
+              of AI. I bought a GTX 1070 graphics card, watched a few tutorials,
+              and even got an MNIST digit recognizer model working. I thought
+              this code thing was pretty cool! I quickly realized that I lacked
+              the basics and foundation to really understand what I was doing,
+              and the whole self-taught route just wasn&apos;t working for me.
             </p>
             <p>
-              I spent the next few summers indoors working on a rocket design,
-              while I recovered from the multiple surgeries it took to fix my
-              badly broken legs. It took nine iterations, but when I was 15 I
-              sent my dad’s Blackberry into orbit and was able to transmit a
-              photo back down to our family computer from space.
+              Having a goal is great, and mine was learning how to code.
+              Properly this time. My buddy told me about a coding bootcamp
+              called Code Fellows, and I learned web development in JavaScript
+              and Python in 2020. I built a stock prediction model using Keras
+              and Tensorflow for my final project. I love code because I can
+              build tools and apps to be more productive in less time; "tools
+              that can build other tools".
             </p>
             <p>
-              Today, I’m the founder of Planetaria, where we’re working on
-              civilian space suits and manned shuttle kits you can assemble at
-              home so that the next generation of kids really <em>can</em> make
-              it to orbit — from the comfort of their own backyards.
+              Since learning to code, I&apos;ve built tech companies, taught coding
+              classes, and developed a wide range of applications, APIs, and web
+              scrapers—covering the full spectrum of software development.
+              Currently, I&apos;m the co-founder and sole developer of Observe
+              Safety, an app and company I&apos;m creating with my dad to help
+              construction companies efficiently record and manage their safety
+              data. We&apos;ve recently begun the alpha testing phase.
             </p>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="#" icon={XIcon}>
-              Follow on X
-            </SocialLink>
-            <SocialLink href="#" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+            <SocialLink
+              href="https://www.github.com/adamowada"
+              icon={GitHubIcon}
+            >
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+            <SocialLink
+              href="https://www.linkedin.com/in/adamowada/"
+              icon={LinkedInIcon}
+              className="mt-4"
+            >
               Follow on LinkedIn
             </SocialLink>
             <SocialLink
+              href="https://www.instagram.com/adamowada/"
+              icon={InstagramIcon}
+              className="mt-4"
+            >
+              Follow on Instagram
+            </SocialLink>
+            <SocialLink
+              href="https://www.x.com/AdamOwada"
+              icon={XIcon}
+              className="mt-4"
+            >
+              Follow on X
+            </SocialLink>
+            {/* <SocialLink
               href="mailto:spencer@planetaria.tech"
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
               spencer@planetaria.tech
-            </SocialLink>
+            </SocialLink> */}
           </ul>
         </div>
       </div>
