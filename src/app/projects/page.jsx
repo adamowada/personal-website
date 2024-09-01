@@ -61,7 +61,7 @@ function LinkIcon(props) {
 
 export const metadata = {
   title: 'Projects',
-  description: 'Cool things I\'ve worked on.',
+  description: "Cool things I've worked on.",
 }
 
 export default function Projects() {
