@@ -13,7 +13,7 @@ function SpeakingSection({ children, ...props }) {
 function Appearance({ title, description, event, cta, href }) {
   return (
     <Card as="article">
-      <Card.Title as="h3" href={href}>
+      <Card.Title as="h3" href={href} newWindow={true}>
         {title}
       </Card.Title>
       <Card.Eyebrow decorate>{event}</Card.Eyebrow>

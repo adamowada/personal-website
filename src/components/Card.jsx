@@ -26,24 +26,29 @@ export function Card({ as, className, children }) {
   )
 }
 
-Card.Link = function CardLink({ children, ...props }) {
+Card.Link = function CardLink({ children, newWindow = false, ...props }) {
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
-      <Link target="_blank" rel="noopener noreferrer" {...props}>
+      <Link
+        target={newWindow ? "_blank" : "_self"}
+        rel={newWindow ? "noopener noreferrer" : undefined}
+        {...props}
+      >
         <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
       </Link>
     </>
-  )
-}
+  );
+};
 
-Card.Title = function CardTitle({ as, href, children }) {
+
+Card.Title = function CardTitle({ as, href, children, newWindow }) {
   let Component = as ?? 'h2'
 
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-      {href ? <Card.Link href={href}>{children}</Card.Link> : children}
+      {href ? <Card.Link href={href} newWindow={newWindow}>{children}</Card.Link> : children}
     </Component>
   )
 }
