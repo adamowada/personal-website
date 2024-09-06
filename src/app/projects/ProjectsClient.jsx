@@ -8,62 +8,50 @@ export default function ProjectsClient() {
 
   useEffect(() => {
     const updateTheme = () => {
-      const localStorageTheme = window.localStorage.getItem('theme');
-
-      if (localStorageTheme === 'system') {
-        // Check system preference
-        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        setTheme(darkModeMediaQuery.matches ? 'dark' : 'vue');
-
-        const handleSystemThemeChange = (e) => {
-          setTheme(e.matches ? 'dark' : 'vue');
-        };
-
-        darkModeMediaQuery.addEventListener('change', handleSystemThemeChange);
-
-        // Clean up system theme listener on unmount
-        return () => {
-          darkModeMediaQuery.removeEventListener('change', handleSystemThemeChange);
-        };
-      } else if (localStorageTheme === 'light') {
+      // first check if it's dark or light mode in local storage, which override system theme
+      if (window.localStorage.theme === 'dark') {
+        console.log('setting theme to dark 1')
+        setTheme('panda&hide_border=true');
+        return
+      }
+      if (window.localStorage.theme === 'light') {
+        console.log('setting theme to light 1')
         setTheme('vue');
-      } else if (localStorageTheme === 'dark') {
-        setTheme('dark');
-      } else {
-        // Fallback to light theme
+        return
+      }
+      // then check system theme
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        console.log('setting theme to dark 2')
+        setTheme('panda&hide_border=true');
+        return
+      }
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        console.log('setting theme to light 2')
         setTheme('vue');
+        return
       }
     };
 
     // Initial theme setting
     updateTheme();
 
-    const handleStorageChange = () => {
-      updateTheme();
-    };
-
-    // Listen for changes in localStorage (works across tabs and windows)
-    window.addEventListener('storage', handleStorageChange);
-
-    // Add a manual listener for the same tab to catch localStorage changes
-    const manualStorageChange = () => {
-      updateTheme();
-    };
-
-    // Custom logic for handling theme changes in the same tab
-    window.addEventListener('localStorageChange', manualStorageChange);
+    // Add event listeners
+    window.addEventListener('themeChange', updateTheme);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', updateTheme);
 
     // Clean up listeners on unmount
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('localStorageChange', manualStorageChange);
+      window.removeEventListener('themeChange', updateTheme);
+      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', updateTheme);
+      window.matchMedia('(prefers-color-scheme: light)').removeEventListener('change', updateTheme);
     };
-  }, []); // Empty dependency array to only run on mount
+  }, []);
 
   return (
     <SimpleLayout
       title="Cool things I'm working on and have finished working on."
-      intro="I have projects. I promise!"
+      // intro="I have projects. I promise!"
     >
       <div
         role="list"
@@ -72,7 +60,7 @@ export default function ProjectsClient() {
         <a href="https://github.com/codefellows/seattle-code-python-401n8">
           <img
             width="400"
-            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=codefellows&repo=seattle-code-python-401n8&theme=${theme}`}
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=codefellows&repo=seattle-code-python-401n8&hide&theme=${theme}`}
             alt="seattle-code-python-401n8"
           />
         </a>
@@ -86,56 +74,56 @@ export default function ProjectsClient() {
         <a href="https://github.com/adamowada/slides-to-reveal">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=slides-to-reveal&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=slides-to-reveal&theme=${theme}`}
             alt="slides-to-reveal"
           />
         </a>
         <a href="https://github.com/adamowada/personal-website">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=personal-website&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=personal-website&theme=${theme}`}
             alt="personal-website"
           />
         </a>
         <a href="https://github.com/adamowada/evals">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=evals&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=evals&theme=${theme}`}
             alt="evals"
           />
         </a>
         <a href="https://github.com/adamowada/colorful-leetcode-stats">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=colorful-leetcode-stats&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=colorful-leetcode-stats&theme=${theme}`}
             alt="colorful-leetcode-stats"
           />
         </a>
         <a href="https://github.com/adamowada/dump-to-text">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=dump-to-text&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=dump-to-text&theme=${theme}`}
             alt="dump-to-text"
           />
         </a>
         <a href="https://github.com/adamowada/auto-acp">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=auto-acp&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=auto-acp&theme=${theme}`}
             alt="auto-acp"
           />
         </a>
         <a href="https://github.com/adamowada/cba-chatbot-demo">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=cba-chatbot-demo&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=cba-chatbot-demo&theme=${theme}`}
             alt="cba-chatbot-demo"
           />
         </a>
         <a href="https://github.com/adamowada/tflite-test">
           <img
             width="400"
-            src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=tflite-test&theme=vue"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=tflite-test&theme=${theme}`}
             alt="tflite-test"
           />
         </a>
