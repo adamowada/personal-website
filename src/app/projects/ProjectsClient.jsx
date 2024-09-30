@@ -11,52 +11,74 @@ export default function ProjectsClient() {
       // first check if it's dark or light mode in local storage, which override system theme
       if (window.localStorage.theme === 'dark') {
         console.log('setting theme to dark 1')
-        setTheme('panda&hide_border=true');
+        setTheme('panda&hide_border=true')
         return
       }
       if (window.localStorage.theme === 'light') {
         console.log('setting theme to light 1')
-        setTheme('vue');
+        setTheme('vue')
         return
       }
       // then check system theme
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         console.log('setting theme to dark 2')
-        setTheme('panda&hide_border=true');
+        setTheme('panda&hide_border=true')
         return
       }
       if (window.matchMedia('(prefers-color-scheme: light)').matches) {
         console.log('setting theme to light 2')
-        setTheme('vue');
+        setTheme('vue')
         return
       }
-    };
+    }
 
     // Initial theme setting
-    updateTheme();
+    updateTheme()
 
     // Add event listeners
-    window.addEventListener('themeChange', updateTheme);
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', updateTheme);
+    window.addEventListener('themeChange', updateTheme)
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', updateTheme)
+    window
+      .matchMedia('(prefers-color-scheme: light)')
+      .addEventListener('change', updateTheme)
 
     // Clean up listeners on unmount
     return () => {
-      window.removeEventListener('themeChange', updateTheme);
-      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', updateTheme);
-      window.matchMedia('(prefers-color-scheme: light)').removeEventListener('change', updateTheme);
-    };
-  }, []);
+      window.removeEventListener('themeChange', updateTheme)
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .removeEventListener('change', updateTheme)
+      window
+        .matchMedia('(prefers-color-scheme: light)')
+        .removeEventListener('change', updateTheme)
+    }
+  }, [])
 
   return (
     <SimpleLayout
       title="Cool things I'm working on and have finished working on."
-      // intro="I have projects. I promise!"
+      intro="Some professional projects do not have public repositories."
     >
       <div
         role="list"
         className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
       >
+        <a href="https://github.com/adamowada/wa-driver-guide-practice-frontend">
+          <img
+            width="400"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=wa-driver-guide-practice-frontend&theme=${theme}`}
+            alt="wa-driver-guide-practice-frontend"
+          />
+        </a>
+        <a href="https://github.com/adamowada/wa-driver-guide-practice-api">
+          <img
+            width="400"
+            src={`https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=adamowada&repo=wa-driver-guide-practice-api&theme=${theme}`}
+            alt="wa-driver-guide-practice-api"
+          />
+        </a>
         <a href="https://github.com/codefellows/seattle-code-python-401n8">
           <img
             width="400"
