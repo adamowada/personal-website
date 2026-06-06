@@ -1,10 +1,11 @@
-import ProjectsClient from './ProjectsClient';
+import ProjectsClient from './ProjectsClient'
 
 export const metadata = {
-  title: 'Projects - Adam Owada',
-  description: "Cool things I've worked on.",
-};
+  title: 'Projects',
+  description:
+    'Selected applied AI, full-stack, developer tooling, and data systems projects by Adam Owada.',
+}
 
 export default function ProjectsPage() {
-  return <ProjectsClient />;
+  return <ProjectsClient />
 }

@@ -6,11 +6,10 @@ import '@/styles/tailwind.css'
 export const metadata = {
   title: {
     template: '%s - Adam Owada',
-    default:
-      'Adam Owada - Fullstack software engineer',
+    default: 'Adam Owada - Applied AI / Full-Stack Engineer',
   },
   description:
-    "Hi, I'm Adam, a fullstack software engineer and AI tinkerer based in Seattle. I'm the co-founder and sole developer of Observe Safety, an enterprise SaaS platform designed to help general contractors efficiently track and manage safety data.",
+    'Seattle-based applied AI / full-stack engineer focused on agentic developer tooling, Python/TypeScript systems, MCP integrations, data pipelines, and B2B SaaS.',
 }
 
 export default function RootLayout({ children }) {

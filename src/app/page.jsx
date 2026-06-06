@@ -5,12 +5,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import logoCF from '@/images/logos/cf_logo_small.png'
 import logoTEST from '@/images/logos/test_logo_small.png'
 import logoProActive from '@/images/logos/pro_active_logo_small.png'
@@ -20,8 +15,36 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import { getAllArticles } from '@/lib/articles'
-import { formatDate } from '@/lib/formatDate'
+
+const selectedProjects = [
+  {
+    name: 'Observe Safety',
+    category: 'B2B SaaS',
+    href: 'https://observesafety.com',
+    description:
+      'Alpha-stage construction safety platform with Next.js, Expo React Native, FastAPI, PostgreSQL, tenant-scoped RBAC/RLS, analytics, mobile reporting workflows, CI, and AWS production-pilot infrastructure.',
+  },
+  {
+    name: 'Codex Supervisor',
+    category: 'Agentic developer tooling',
+    href: 'https://github.com/adamowada/codex-supervisor',
+    description:
+      'Python-first control plane for Codex-driven engineering workflows, including durable task state, worker evidence, isolated worktrees, MCP/plugin surfaces, and review loops.',
+  },
+  {
+    name: 'nlp-stock-prediction',
+    category: 'Python research systems',
+    href: 'https://github.com/adamowada/nlp-stock-prediction',
+    description:
+      'Evidence-backed market research/reporting system with provenance, SQLite-backed artifacts, provider-health handling, MCP tooling, and evaluation workflows. It is not a trading app.',
+  },
+  {
+    name: 'Agentify / Sports Business Technologies',
+    category: 'Paid client work',
+    description:
+      'Sports data ingestion, reconciliation, salary-comparable analysis, and owner-facing admin workflows for MLS/NWSL player data.',
+  },
+]
 
 function MailIcon(props) {
   return (
@@ -69,34 +92,6 @@ function BriefcaseIcon(props) {
   )
 }
 
-function ArrowDownIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function Article({ article }) {
-  return (
-    <Card as="article">
-      <Card.Title href={`/blog/${article.slug}`}>
-        {article.title}
-      </Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-      <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read blog</Card.Cta>
-    </Card>
-  )
-}
-
 function SocialLink({ icon: Icon, ...props }) {
   return (
     <Link
@@ -110,32 +105,25 @@ function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
-function Newsletter() {
+function Contact() {
   return (
-    <form
-      action="/thank-you"
-      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
-    >
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Stay up to date</span>
+        <span className="ml-3">Contact</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Get notified when I publish something new, and unsubscribe at any time.
+        Open to applied AI, full-stack, Python backend, developer tooling, and
+        AI-assisted product engineering roles.
       </p>
-      <div className="mt-6 flex">
-        <input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
-        />
-        <Button type="submit" className="ml-4 flex-none">
-          Join
-        </Button>
-      </div>
-    </form>
+      <Button
+        href="mailto:adamowada@gmail.com"
+        variant="secondary"
+        className="mt-6"
+      >
+        Email Adam
+      </Button>
+    </div>
   )
 }
 
@@ -180,7 +168,7 @@ function Resume() {
   let resume = [
     {
       company: 'Observe Safety, LLC',
-      title: 'Fullstack Software Engineer',
+      title: 'Co-Founder and Full-Stack Engineer',
       logo: logoOS,
       start: '2024',
       end: {
@@ -197,7 +185,7 @@ function Resume() {
     },
     {
       company: 'Temporary Employee Safety Training, LLC',
-      title: 'Fullstack Software Engineer',
+      title: 'Full-Stack Software Engineer',
       logo: logoTEST,
       start: '2021',
       end: '2021',
@@ -253,42 +241,69 @@ function Photos() {
   )
 }
 
-export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+function ProjectPreview({ project }) {
+  return (
+    <Card as="article">
+      <Card.Eyebrow decorate>{project.category}</Card.Eyebrow>
+      <Card.Title href={project.href} newWindow={Boolean(project.href)}>
+        {project.name}
+      </Card.Title>
+      <Card.Description>{project.description}</Card.Description>
+      {project.href && <Card.Cta>View project</Card.Cta>}
+    </Card>
+  )
+}
 
+function SelectedWork() {
+  return (
+    <section>
+      <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        Selected work
+      </h2>
+      <div className="mt-6 flex flex-col gap-12">
+        {selectedProjects.map((project) => (
+          <ProjectPreview key={project.name} project={project} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export default async function Home() {
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Fullstack software engineer, founder, and LLM enthusiast.
+            Applied AI / full-stack engineer focused on agentic developer
+            tooling.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hi, I&apos;m Adam, a fullstack software engineer and AI tinkerer
-            based in Seattle. I&apos;m the co-founder and sole developer of
-            Observe Safety, an enterprise SaaS platform designed to help general
-            contractors efficiently track and manage safety data.
+            I&apos;m Adam Owada, a Seattle-based Python and TypeScript engineer.
+            I build practical software systems around LLMs, data pipelines,
+            APIs, and developer workflows. My recent work includes Codex-native
+            tooling, MCP integrations, applied LLM evaluation infrastructure,
+            and Observe Safety, an alpha-stage B2B construction safety SaaS.
           </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button href="/projects">View projects</Button>
+            <Button
+              href="https://www.linkedin.com/in/adamowada/"
+              variant="secondary"
+            >
+              LinkedIn
+            </Button>
+          </div>
           <div className="mt-6 flex gap-6">
             <SocialLink
               href="https://www.github.com/adamowada"
-              aria-label="Follow on GitHub"
+              aria-label="GitHub profile"
               icon={GitHubIcon}
             />
             <SocialLink
               href="https://www.linkedin.com/in/adamowada/"
-              aria-label="Follow on LinkedIn"
+              aria-label="LinkedIn profile"
               icon={LinkedInIcon}
-            />
-            <SocialLink
-              href="https://www.instagram.com/adamowada/"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="https://www.x.com/AdamOwada"
-              aria-label="Follow on X"
-              icon={XIcon}
             />
           </div>
         </div>
@@ -296,13 +311,10 @@ export default async function Home() {
       <Photos />
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
-          </div>
+          <SelectedWork />
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
+            <Contact />
           </div>
         </div>
       </Container>

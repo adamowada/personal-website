@@ -4,12 +4,17 @@ export const article = {
   author: 'Adam Owada',
   date: '2024-08-30',
   title: 'Hello World',
-  description: 'My first blog post. Introducing myself and a little bit of how I got into coding in the first place.',
+  description:
+    'My first blog post. Introducing myself and a little bit of how I got into coding in the first place.',
 }
 
 export const metadata = {
   title: article.title,
   description: article.description,
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default (props) => <ArticleLayout article={article} {...props} />
@@ -35,7 +40,7 @@ Everyone starts somewhere.
 
 Do you remember the first "Hello world" program you wrote? I do. It was on a Windows 98 machine, my uncle walked me through the setup process
 and gave me a How to Program for Complete Beginners 101 book. My first program, written in BASIC, was the quintessential "Hello world" that
-I'm pretty sure is a rite of passage for all newbie programmers. I wrote a program that drew a diagonal line. I wrote a program that made beeping noises. And like many self-taught programmers learning alone from a book, I hit a wall and gave up. 
+I'm pretty sure is a rite of passage for all newbie programmers. I wrote a program that drew a diagonal line. I wrote a program that made beeping noises. And like many self-taught programmers learning alone from a book, I hit a wall and gave up.
 
 Fast forward many years later and I was looking for a career change. Law school didn't work out. I was interested in learning how to code, but I still wasn't able to teach myself. My buddy Andrew told me about a coding bootcamp named Code Fellows, and I started my first real coding class as a student in 2020. I learned web development, Python, and I never looked back. 🙂
 
@@ -46,5 +51,5 @@ def main():
 
 if __name__ == "__main__":
 	main()
-	
+
 ```

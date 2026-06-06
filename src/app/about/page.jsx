@@ -3,12 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
 function SocialLink({ className, href, children, icon: Icon }) {
@@ -41,7 +36,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    "I'm Adam Owada. I build tools to empower people.",
+    'About Adam Owada, a Seattle-based applied AI / full-stack engineer focused on agentic developer tooling.',
 }
 
 export default function About() {
@@ -52,7 +47,7 @@ export default function About() {
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
               src={portraitImage}
-              alt=""
+              alt="Adam Owada"
               sizes="(min-width: 1024px) 32rem, 20rem"
               className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
             />
@@ -60,49 +55,36 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I&apos;m Adam Owada. I build tools to empower people.
+            I build practical AI-enabled software, not demos for their own sake.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I&apos;ve loved making (and breaking) things since I was a kid. It
-              started with legos, and creating my own mechs by combining
-              Bionicle lego sets together into ever more complex iterations and
-              of course having them fight each other. I took apart broken
-              electronics, played around with BASIC, and told my parents I
-              wanted to be an inventor. I liked reading about codes and ciphers,
-              and I wrote a report in high school based largely on Simon Singh&apos;s
-              "The Code Book" where I learned about the math behind public-key
-              cryptography. The idea that one-way functions operated like
-              "locks" blew my mind. 🤯
+              I&apos;m Adam Owada, a Seattle-based applied AI / full-stack
+              engineer focused on agentic developer tooling. My work sits at the
+              intersection of backend systems, product engineering, LLM
+              workflows, MCP integrations, and data-heavy applications.
             </p>
             <p>
-              I was interested in everything but lacked a clear vision. I loved
-              the intellectual challenge of the legal profession and tried law
-              school. It wasn&apos;t until IBM&apos;s Watson years later that my creative
-              mind really saw the possibility of programming and the potential
-              of AI. I bought a GTX 1070 graphics card, watched a few tutorials,
-              and even got an MNIST digit recognizer model working. I thought
-              this code thing was pretty cool! I quickly realized that I lacked
-              the basics and foundation to really understand what I was doing,
-              and the whole self-taught route just wasn&apos;t working for me.
+              I work mostly in Python and TypeScript, with recent projects
+              spanning FastAPI, Django, Next.js, React, PostgreSQL, SQLite,
+              CI/testing systems, Codex plugins, and local MCP tool surfaces. I
+              care about software that is useful, inspectable, and defensible in
+              the real world.
             </p>
             <p>
-              Having a goal is great, and mine was learning how to code.
-              Properly this time. My buddy told me about a coding bootcamp
-              called Code Fellows, and I learned web development in JavaScript
-              and Python in 2020. I built a stock prediction model using Keras
-              and Tensorflow for my final project. I love code because I can
-              build tools and apps to be more productive in less time; "tools
-              that can build other tools".
+              Before focusing more heavily on applied AI and product systems, I
+              was a Lead Instructor at Code Fellows, where I taught advanced
+              Python, Django, REST APIs, PostgreSQL, Docker, React/Next.js, data
+              science, testing, and software engineering fundamentals. That
+              teaching background still shapes how I build: clear interfaces,
+              readable code, strong documentation, and technical decisions that
+              hold up under scrutiny.
             </p>
             <p>
-              Since learning to code, I&apos;ve built tech companies, taught coding
-              classes, and developed a wide range of applications, APIs, and web
-              scrapers—covering the full spectrum of software development.
-              Currently, I&apos;m the co-founder and sole developer of Observe
-              Safety, an app and company I&apos;m creating with my dad to help
-              construction companies efficiently record and manage their safety
-              data. We&apos;ve recently begun the alpha testing phase.
+              Current work includes Observe Safety, an alpha-stage construction
+              safety SaaS I&apos;m building with my father, and several
+              Codex-native projects exploring how AI-assisted engineering can
+              become more auditable, repeatable, and useful.
             </p>
           </div>
         </div>
@@ -112,36 +94,22 @@ export default function About() {
               href="https://www.github.com/adamowada"
               icon={GitHubIcon}
             >
-              Follow on GitHub
+              GitHub
             </SocialLink>
             <SocialLink
               href="https://www.linkedin.com/in/adamowada/"
               icon={LinkedInIcon}
               className="mt-4"
             >
-              Follow on LinkedIn
+              LinkedIn
             </SocialLink>
             <SocialLink
-              href="https://www.instagram.com/adamowada/"
-              icon={InstagramIcon}
-              className="mt-4"
-            >
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink
-              href="https://www.x.com/AdamOwada"
-              icon={XIcon}
-              className="mt-4"
-            >
-              Follow on X
-            </SocialLink>
-            {/* <SocialLink
-              href="mailto:spencer@planetaria.tech"
+              href="mailto:adamowada@gmail.com"
               icon={MailIcon}
-              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+              className="mt-4"
             >
-              spencer@planetaria.tech
-            </SocialLink> */}
+              adamowada@gmail.com
+            </SocialLink>
           </ul>
         </div>
       </div>
