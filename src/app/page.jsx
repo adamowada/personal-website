@@ -6,10 +6,6 @@ import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
-import logoCF from '@/images/logos/cf_logo_small.png'
-import logoTEST from '@/images/logos/test_logo_small.png'
-import logoProActive from '@/images/logos/pro_active_logo_small.png'
-import logoOS from '@/images/logos/os_logo_1.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -41,6 +37,7 @@ const selectedProjects = [
   {
     name: 'Agentify / Sports Business Technologies',
     category: 'Paid client work',
+    href: 'https://agentify.co',
     description:
       'Sports data ingestion, reconciliation, salary-comparable analysis, and owner-facing admin workflows for MLS/NWSL player data.',
   },
@@ -136,10 +133,52 @@ function Role({ role }) {
   let endLabel = typeof role.end === 'string' ? role.end : role.end.label
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
 
+  if (role.summary) {
+    return (
+      <li className="flex gap-4">
+        <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+          <CompanyMark mark={role.mark} />
+        </div>
+        <div className="min-w-0 flex-auto">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              {role.href ? (
+                <Link
+                  href={role.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-teal-500 dark:hover:text-teal-400"
+                >
+                  {role.company}
+                </Link>
+              ) : (
+                role.company
+              )}
+            </h3>
+            <p
+              className="ml-auto shrink-0 text-xs text-zinc-400 dark:text-zinc-500"
+              aria-label={`${startLabel} until ${endLabel}`}
+            >
+              <time dateTime={startDate}>{startLabel}</time>{' '}
+              <span aria-hidden="true">-</span>{' '}
+              <time dateTime={endDate}>{endLabel}</time>
+            </p>
+          </div>
+          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+            {role.title}
+          </p>
+          <p className="mt-2 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
+            {role.summary}
+          </p>
+        </div>
+      </li>
+    )
+  }
+
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        <CompanyMark mark={role.mark} />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -164,38 +203,149 @@ function Role({ role }) {
   )
 }
 
+function CompanyMark({ mark }) {
+  return (
+    <svg viewBox="0 0 40 40" aria-hidden="true" className="h-8 w-8">
+      <rect width="40" height="40" rx="12" className={mark.background} />
+      <rect
+        x="0.5"
+        y="0.5"
+        width="39"
+        height="39"
+        rx="11.5"
+        fill="none"
+        className={mark.border}
+      />
+      <path d={mark.shape} className={mark.accent} fillOpacity="0.18" />
+      <text
+        x="20"
+        y="24"
+        textAnchor="middle"
+        fontFamily="Arial, sans-serif"
+        fontSize="10"
+        fontWeight="700"
+        className={mark.text}
+      >
+        {mark.initials}
+      </text>
+    </svg>
+  )
+}
+
 function Resume() {
+  let currentYear = new Date().getFullYear().toString()
   let resume = [
     {
       company: 'Observe Safety, LLC',
       title: 'Co-Founder and Full-Stack Engineer',
-      logo: logoOS,
-      start: '2024',
+      href: 'https://observesafety.com',
+      mark: {
+        initials: 'OS',
+        background: 'fill-teal-50 dark:fill-teal-950/40',
+        border: 'stroke-teal-200 dark:stroke-teal-700/70',
+        accent: 'fill-teal-500',
+        text: 'fill-teal-700 dark:fill-teal-300',
+        shape: 'M8 21c6.5-10 17.5-10 24 0-6.5 10-17.5 10-24 0Z',
+      },
+      start: {
+        label: 'Apr 2024',
+        dateTime: '2024-04',
+      },
       end: {
         label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
+        dateTime: currentYear,
       },
+      summary:
+        'Building an alpha-stage construction safety SaaS with Next.js, Expo React Native, FastAPI, PostgreSQL, tenant-scoped RBAC/RLS, analytics, mobile reporting, CI, and AWS production-pilot infrastructure.',
+    },
+    {
+      company: 'Self-employed',
+      title: 'Independent Applied AI / Full-Stack Engineer',
+      href: 'https://github.com/adamowada',
+      mark: {
+        initials: 'AI',
+        background: 'fill-zinc-50 dark:fill-zinc-800',
+        border: 'stroke-zinc-200 dark:stroke-zinc-700',
+        accent: 'fill-zinc-500',
+        text: 'fill-zinc-700 dark:fill-zinc-200',
+        shape: 'M10 10h20v20H10z',
+      },
+      start: '2021',
+      end: {
+        label: 'Present',
+        dateTime: currentYear,
+      },
+      summary:
+        'Selected independent software work across Codex-native developer tools, MCP integrations, Python research systems, evaluation infrastructure, and full-stack product experiments.',
+    },
+    {
+      company: 'Sports Business Technologies / Agentify',
+      title: 'Contract Full-Stack Developer & Data Engineer',
+      href: 'https://agentify.co',
+      mark: {
+        initials: 'AG',
+        background: 'fill-yellow-50 dark:fill-yellow-950/30',
+        border: 'stroke-yellow-200 dark:stroke-yellow-700/60',
+        accent: 'fill-yellow-500',
+        text: 'fill-zinc-900 dark:fill-yellow-200',
+        shape: 'M8 12h24v16H8z',
+      },
+      start: {
+        label: 'Dec 2024',
+        dateTime: '2024-12',
+      },
+      end: {
+        label: 'May 2026',
+        dateTime: '2026-05',
+      },
+      summary:
+        'Delivered sports data ingestion, reconciliation, salary-comparable analysis, and owner-facing admin workflows for MLS/NWSL player data.',
+    },
+    {
+      company: 'Outlier.ai',
+      title: 'AI Model Evaluation Contributor',
+      href: 'https://outlier.ai',
+      mark: {
+        initials: 'O',
+        background: 'fill-violet-50 dark:fill-violet-950/30',
+        border: 'stroke-violet-200 dark:stroke-violet-700/60',
+        accent: 'fill-violet-500',
+        text: 'fill-violet-700 dark:fill-violet-200',
+        shape: 'M20 7a13 13 0 1 0 0 26 13 13 0 0 0 0-26Z',
+      },
+      start: {
+        label: 'Oct 2024',
+        dateTime: '2024-10',
+      },
+      end: {
+        label: 'Dec 2024',
+        dateTime: '2024-12',
+      },
+      summary:
+        'Evaluated and rewrote model outputs for coding, function-calling, and tool-use tasks using detailed rubrics and quality criteria.',
     },
     {
       company: 'Code Fellows, Inc.',
       title: 'Lead Instructor, Python',
-      logo: logoCF,
-      start: '2022',
-      end: '2024',
-    },
-    {
-      company: 'Temporary Employee Safety Training, LLC',
-      title: 'Full-Stack Software Engineer',
-      logo: logoTEST,
-      start: '2021',
-      end: '2021',
-    },
-    {
-      company: 'Pro-Active Home Builders, Inc.',
-      title: 'Safety Officer',
-      logo: logoProActive,
-      start: '2014',
-      end: '2022',
+      href: 'https://www.codefellows.org',
+      mark: {
+        initials: 'CF',
+        background: 'fill-red-50 dark:fill-red-950/30',
+        border: 'stroke-red-200 dark:stroke-red-700/60',
+        accent: 'fill-red-500',
+        text: 'fill-red-700 dark:fill-red-200',
+        shape: 'M9 9h22v22H9z',
+      },
+      start: {
+        label: 'Apr 2022',
+        dateTime: '2022-04',
+      },
+      end: {
+        label: 'Mar 2024',
+        dateTime: '2024-03',
+      },
+      summary:
+        'Taught advanced Python, Django, REST APIs, PostgreSQL, Docker, React/Next.js, data science, testing, and software engineering fundamentals.',
     },
   ]
 
@@ -205,7 +355,7 @@ function Resume() {
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
       </h2>
-      <ol className="mt-6 space-y-4">
+      <ol className="mt-6 space-y-6">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
