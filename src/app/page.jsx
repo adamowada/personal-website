@@ -39,7 +39,30 @@ const selectedProjects = [
     category: 'Paid client work',
     href: 'https://agentify.co',
     description:
-      'Sports data ingestion, reconciliation, salary-comparable analysis, and owner-facing admin workflows for MLS/NWSL player data.',
+      'Sports data ingestion and reconciliation platform work, including an 18-league scraper expansion with concurrent collection that cut multi-league runtime from roughly nine hours into the 3.5-4.3 hour range.',
+  },
+]
+
+const whitepapers = [
+  {
+    title:
+      'RuleLedger v3: Measuring Reasoning Effort in LLM Software Engineering',
+    date: 'June 17, 2026',
+    href: '/whitepapers/ruleledger-v3-white-paper.pdf',
+    thumbnail: '/whitepapers/ruleledger-v3-white-paper.png',
+    thumbnailAlt: 'First page thumbnail of the RuleLedger v3 white paper.',
+    description:
+      'A 200-run benchmark showing high reasoning effort materially improved GPT-5.5 software-engineering quality, with xhigh producing the strongest observed tail behavior.',
+  },
+  {
+    title: 'Spark Mode Efficiency: Direct Edit vs Proposal Mode',
+    date: 'June 25, 2026',
+    href: '/whitepapers/spark-mode-efficiency-white-paper.pdf',
+    thumbnail: '/whitepapers/spark-mode-efficiency-white-paper.png',
+    thumbnailAlt:
+      'First page thumbnail of the Spark Mode Efficiency white paper.',
+    description:
+      'A 360-row experiment showing direct-edit Spark subagents improved medium-level coordinators, while solo high/xhigh stayed ahead on peak quality and token efficiency.',
   },
 ]
 
@@ -276,7 +299,7 @@ function Resume() {
         dateTime: currentYear,
       },
       summary:
-        'Selected independent software work across Codex-native developer tools, MCP integrations, Python research systems, evaluation infrastructure, and full-stack product experiments.',
+        'Selected independent software work across Codex-native developer tools, MCP integrations, Python research systems, published benchmark whitepapers, evaluation infrastructure, and full-stack product experiments.',
     },
     {
       company: 'Sports Business Technologies / Agentify',
@@ -299,7 +322,7 @@ function Resume() {
         dateTime: '2026-05',
       },
       summary:
-        'Delivered sports data ingestion, reconciliation, salary-comparable analysis, and owner-facing admin workflows for MLS/NWSL player data.',
+        'Delivered sports data ingestion, reconciliation, salary-comparable analysis, and owner-facing admin workflows, then expanded the scraper toward 18 leagues with concurrent collection.',
     },
     {
       company: 'Outlier.ai',
@@ -391,6 +414,64 @@ function Photos() {
   )
 }
 
+function WhitepaperPreview({ paper }) {
+  return (
+    <article className="group grid gap-5 sm:grid-cols-[10rem_1fr]">
+      <div className="relative aspect-[612/792] overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm shadow-zinc-800/5 dark:border-zinc-700/60 dark:bg-zinc-900">
+        <Image
+          src={paper.thumbnail}
+          alt={paper.thumbnailAlt}
+          width={612}
+          height={792}
+          sizes="(min-width: 640px) 10rem, 100vw"
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
+      <div className="min-w-0 self-center">
+        <p className="text-sm text-zinc-400 dark:text-zinc-500">{paper.date}</p>
+        <h3 className="mt-2 text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+          {paper.title}
+        </h3>
+        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          {paper.description}
+        </p>
+        <Link
+          href={paper.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center text-sm font-medium text-teal-500 transition hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:hover:text-teal-400 dark:focus:ring-offset-black"
+        >
+          Open PDF
+          <span aria-hidden="true" className="ml-1">
+            &rarr;
+          </span>
+        </Link>
+      </div>
+    </article>
+  )
+}
+
+function Whitepapers() {
+  return (
+    <section>
+      <div className="max-w-2xl">
+        <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+          Whitepapers
+        </h2>
+        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          Published benchmark reports from my Codex subagent and LLM software
+          engineering evaluation work.
+        </p>
+      </div>
+      <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2">
+        {whitepapers.map((paper) => (
+          <WhitepaperPreview key={paper.href} paper={paper} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ProjectPreview({ project }) {
   return (
     <Card as="article">
@@ -425,15 +506,16 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Applied AI / full-stack engineer focused on agentic developer
-            tooling.
+            Applied AI / full-stack engineer building agentic developer tooling,
+            evaluation systems, and production data products.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I&apos;m Adam Owada, a Seattle-based Python and TypeScript engineer.
             I build practical software systems around LLMs, data pipelines,
-            APIs, and developer workflows. My recent work includes Codex-native
-            tooling, MCP integrations, applied LLM evaluation infrastructure,
-            and Observe Safety, an alpha-stage B2B construction safety SaaS.
+            APIs, and developer workflows. My recent work spans Codex-native
+            tooling, benchmark whitepapers, MCP integrations, sports-data
+            scraping at multi-league scale, and Observe Safety, an alpha-stage
+            B2B construction safety SaaS.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/projects">View projects</Button>
@@ -459,6 +541,9 @@ export default async function Home() {
         </div>
       </Container>
       <Photos />
+      <Container className="mt-24 md:mt-28">
+        <Whitepapers />
+      </Container>
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <SelectedWork />
