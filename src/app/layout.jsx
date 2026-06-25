@@ -10,6 +10,15 @@ export const metadata = {
   },
   description:
     'Seattle-based applied AI / full-stack engineer focused on agentic developer tooling, Python/TypeScript systems, MCP integrations, data pipelines, and B2B SaaS.',
+  icons: {
+    icon: [
+      {
+        url: '/favicon-headshot.ico?v=20260625-headshot',
+        type: 'image/x-icon',
+        sizes: '16x16 32x32 48x48 64x64',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({ children }) {
