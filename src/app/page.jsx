@@ -506,8 +506,8 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Applied AI / full-stack engineer building agentic developer tooling,
-            evaluation systems, and production data products.
+            Applied AI &amp; full-stack engineer building Python/TypeScript
+            systems, LLM tooling, data pipelines, and developer automation
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             I&apos;m Adam Owada, a Seattle-based Python and TypeScript engineer.
